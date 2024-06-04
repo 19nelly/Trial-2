@@ -1,0 +1,55 @@
+
+#include <iostream>
+using namespace std;
+int main() {
+    int choice;
+    cout<<"1. Add students"<<endl;
+    cout<<"2. View students"<<endl;
+    cout<<"3. View clubs or societies"<<endl;
+    cout<<"4. View sports"<<endl;
+    cout<<"5. View grouped students"<<endl;
+    cout<<"6. Save all files"<<endl;
+    cout<<"7. Exit"<<endl;
+    cout<<"Enter choice"<<endl;
+    cin>>choice;
+
+    switch(choice){
+      case 1:
+    cout<<"Enter First Name:"<<endl;
+    cout<<"Enter Surname:"<<endl;
+    cout<<"Enter Age:"<<endl;
+    cout<<"Enter Gender:"<<endl;
+    cout<<"Enter BBIT group:"<<endl;
+    break;
+    case 2:
+        cout<<"students"<<endl;
+    break;
+    case 3:
+        cout<<"1.Journalism club"<<endl;
+        cout<<"2.Red cross society"<<endl;
+        cout<<"3.Business club"<<endl;
+        cout<<"4.Computer Science club"<<endl;
+        
+    break;
+    case 4:
+        cout<<"view selection of sports";
+    break;
+    case 5:
+        cout<<" shows the students with the groups";
+    break;
+    case 6:
+        cout<<" save";
+    break;
+    case 7:
+        cout<<"exit";
+
+    default:
+        cout<<"Invalid choice";
+    break;}
+
+    system("pause");
+    return 0;
+}
+
+
+
