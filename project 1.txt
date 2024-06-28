@@ -1,0 +1,161 @@
+#include <iostream>
+using namespace std;
+
+// Define a struct to represent a student
+struct Student {
+    string name;
+    char gender;
+    bool isSporting; // true if participating in a sport, false otherwise
+    string sport; // sport name if participating, empty string otherwise
+    vector clubs; // list of club/society names
+};
+
+// Define a struct to represent a club/society
+struct Club {
+    string name;
+    int capacity;
+    int maleCount;
+    int femaleCount;
+    vector members;
+};
+
+// Define a struct to represent a sport
+struct Sport {
+    string name;
+    int capacity;
+    int maleCount;
+    int femaleCount;
+    vector members;
+};
+
+// Function to check if a club/society is full
+bool isClubFull(Club&amp; club); {
+    return club.members.size() &gt;= club.capacity;
+}
+
+// Function to check if a sport is full
+bool isSportFull(Sport&amp; sport) {
+    return sport.members.size() &gt;= sport.capacity;
+}
+
+// Function to check if a club/society has reached gender balance
+bool isClubBalanced(Club&amp; club) {
+    int total = club.maleCount + club.femaleCount;
+    return (club.maleCount &lt;= total * 0.5) &amp;&amp; (club.femaleCount &lt;= total * 0.5);
+}
+
+// Function to check if a sport has reached gender balance
+bool isSportBalanced(Sport&amp; sport) {
+    int total = sport.maleCount + sport.femaleCount;
+    return (sport.maleCount &lt;= total * 0.75) &amp;&amp; (sport.femaleCount &lt;= total * 0.75);
+}
+
+// Function to add a student to a club/society
+void addStudentToClub(Student&amp; student, Club&amp; club) {
+    if (!isClubFull(club) &amp;&amp; isClubBalanced(club)) {
+        club.members.push_back(&amp;student);
+        if (student.gender == 'M') {
+            club.maleCount++;
+        } else {
+            club.femaleCount++;
+        }
+        student.clubs.push_back(club.name);
+    }
+}
+
+// Function to add a student to a sport
+void addStudentToSport(Student&amp; student, Sport&amp; sport) {
+    if (!isSportFull(sport) &amp;&amp; isSportBalanced(sport)) {
+        sport.members.push_back(&amp;student);
+        if (student.gender == 'M') {
+            sport.maleCount++;
+        } else {
+            sport.femaleCount++;
+        }
+        student.sport = sport.name;
+        student.isSporting = true;
+    }
+}
+
+int main() {
+    // Initialize clubs and sports
+    vector clubs = {
+        {"Journalism Club", 60, 0, 0},
+        {"Red Cross Society", 60, 0, 0},
+        {"AISEC", 60, 0, 0},
+        {"Business Club", 60, 0, 0},
+        {"Computer Science Club", 60, 0, 0}
+    };
+
+    vector sports = {
+        {"Rugby", 20, 0, 0},
+        {"Athletics", 20, 0, 0},
+        {"Swimming", 20, 0, 0},
+        {"Soccer", 20, 0, 0}
+    };
+
+    // Initialize students
+    vector students;
+    for (int i = 0; i &lt; 150; i++) {
+        Student student;
+        cout &lt;&lt; "Enter student name: ";
+        cin &gt;&gt; student.name;
+        cout &lt;&lt; "Enter student gender (M/F): ";
+        cin &gt;&gt; student.gender;
+        students.push_back(student);
+    }
+
+    // Assign students to clubs and sports
+    for (Student&amp; student : students) {
+        cout &lt;&lt; "Student " &lt;&lt; student.name &lt;&lt; ":\n";
+        cout &lt;&lt; "Do you want to participate in a sport? (Y/N): ";
+        char sportChoice;
+        cin &gt;&gt; sportChoice;
+        if (sportChoice == 'Y') {
+            cout &lt;&lt; "Choose a sport: \n";
+            for (int i = 0; i &lt; sports.size(); i++) {
+                cout &lt;&lt; i + 1 &lt;&lt; ". " &lt;&lt; sports[i].name &lt;&lt; "\n";
+            }
+            int sportIndex;
+            cin &gt;&gt; sportIndex;
+            addStudentToSport(student, sports[sportIndex - 1]);
+            cout &lt;&lt; "You have been assigned to " &lt;&lt; student.sport &lt;&lt; ".\n";
+            cout &lt;&lt; "Do you want to join a club/society? (Y/N): ";
+            char clubChoice;
+            cin &gt;&gt; clubChoice;
+            if (clubChoice == 'Y') {
+                cout &lt;&lt; "Choose a club/society: \n";
+                for (int i = 0; i &lt; clubs.size(); i++) {
+                    cout &lt;&lt; i + 1 &lt;&lt; ". " &lt;&lt; clubs[i].name &lt;&lt; "\n";
+                }
+                int clubIndex;
+                cin &gt;&gt; clubIndex;
+                addStudentToClub(student, clubs[clubIndex - 1]);
+                cout &lt;&lt; "You have been assigned to " &lt;&lt; student.clubs &lt;&lt; ".\n";
+            }
+        } else {
+            cout &lt;&lt; "Do you want to join a club/society? (Y/N): ";
+            char clubChoice;
+            cin &gt;&gt; clubChoice;
+            if (clubChoice == 'Y') {
+                cout &lt;&lt; "Choose a club/society: \n";
+                for (int i = 0; i &lt; clubs.size(); i++) {
+                    cout &lt;&lt; i + 1 &lt;&lt; ". " &lt;&lt; clubs[i].name &lt;&lt; "\n";
+                }
+                int clubIndex;
+                cin &gt;&gt; clubIndex;
+                addStudentToClub(student, clubs[clubIndex - 1]);
+                cout &lt;&lt; "You have been assigned to " &lt;&lt; student.clubs</map>
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
